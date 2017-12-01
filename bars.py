@@ -10,25 +10,25 @@ def load_data(filepath):
 
 
 def get_biggest_bar(loaded_data):
-    maxSeats = 10;
-    maxSeatsObject = 0;
+    max_seats = 10
+    max_seats_object = 0
     for i in loaded_data['features']:
         seats_count = i['properties']['Attributes']['SeatsCount']
-        if maxSeats < seats_count:
-            maxSeats = seats_count
-            maxSeatsObject = i
-    print(maxSeatsObject['properties']['Attributes']['Name'], maxSeatsObject['properties']['Attributes']['SeatsCount'])
+        if max_seats < seats_count:
+            max_seats = seats_count
+            max_seats_object = i
+    print(max_seats_object['properties']['Attributes']['Name'], max_seats_object['properties']['Attributes']['SeatsCount'])
 
 
 def get_smallest_bar(loaded_data):
-    minSeats = 10;
-    minSeatsObject = 0;
+    min_seats = 10
+    min_seats_object = 0
     for i in loaded_data['features']:
         seats_count = i['properties']['Attributes']['SeatsCount']
-        if minSeats > seats_count:
-            minSeats = seats_count
-            minSeatsObject = i
-    print(minSeatsObject['properties']['Attributes']['Name'], minSeatsObject['properties']['Attributes']['SeatsCount'])
+        if min_seats > seats_count:
+            min_seats = seats_count
+            min_seats_object = i
+    print(min_seats_object['properties']['Attributes']['Name'], min_seats_sbject['properties']['Attributes']['SeatsCount'])
 
 
 def haversine(lon1, lat1, lon2, lat2):
@@ -49,16 +49,16 @@ def haversine(lon1, lat1, lon2, lat2):
 
 
 def get_closest_bar(loaded_data, user_lon, user_lat):
-    minDistance = 7000;
-    minDistanceObject = None;
+    min_distance = 7000
+    min_distance_object = None
     for i in loaded_data['features']:
         bar_lon, bar_lat = i['geometry']['coordinates']
-        barDistance = haversine(user_lon, user_lat, bar_lon, bar_lat)
-        # print(barDistance)
-        if minDistance > barDistance:
-            minDistance = barDistance
-            minDistanceObject = i
-    return minDistanceObject['properties']['Attributes']['Name']
+        bar_distance = haversine(user_lon, user_lat, bar_lon, bar_lat)
+        # print(bar_distance)
+        if min_distance > bar_distance:
+            min_distance = bar_distance
+            min_distance_object = i
+    return min_distance_object['properties']['Attributes']['Name']
 
 
 if __name__ == '__main__':

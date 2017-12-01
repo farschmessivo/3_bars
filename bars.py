@@ -9,10 +9,10 @@ def load_data(filepath):
     return json_data
 
 
-def get_biggest_bar(loaded_data):
+def get_biggest_bar(bars_data):
     max_seats = 10
     max_seats_object = 0
-    for i in loaded_data['features']:
+    for i in bars_data['features']:
         seats_count = i['properties']['Attributes']['SeatsCount']
         if max_seats < seats_count:
             max_seats = seats_count
@@ -20,15 +20,15 @@ def get_biggest_bar(loaded_data):
     print(max_seats_object['properties']['Attributes']['Name'], max_seats_object['properties']['Attributes']['SeatsCount'])
 
 
-def get_smallest_bar(loaded_data):
+def get_smallest_bar(bars_data):
     min_seats = 10
     min_seats_object = 0
-    for i in loaded_data['features']:
+    for i in bars_data['features']:
         seats_count = i['properties']['Attributes']['SeatsCount']
         if min_seats > seats_count:
             min_seats = seats_count
             min_seats_object = i
-    print(min_seats_object['properties']['Attributes']['Name'], min_seats_sbject['properties']['Attributes']['SeatsCount'])
+    print(min_seats_object['properties']['Attributes']['Name'], min_seats_object['properties']['Attributes']['SeatsCount'])
 
 
 def haversine(lon1, lat1, lon2, lat2):
@@ -63,8 +63,8 @@ def get_closest_bar(loaded_data, user_lon, user_lat):
 
 if __name__ == '__main__':
     filepath = input("Please provide path to json: ")
-    loaded_data = load_data(filepath)
-    get_biggest_bar(loaded_data)
-    get_smallest_bar(loaded_data)
+    bars_data = load_data(filepath)
+    get_biggest_bar(bars_data)
+    get_smallest_bar(bars_data)
     user_lon, user_lat = input('\nPlease provide your lat long: ').split(" ")
-    print('The closest bar is:', str(get_closest_bar(loaded_data, float(user_lon), float(user_lat))))
+    print('The closest bar is:', str(get_closest_bar(bars_data, float(user_lon), float(user_lat))))

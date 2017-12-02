@@ -12,22 +12,22 @@ def load_data(filepath):
 def get_biggest_bar(bars_data):
     max_seats = 1
     max_seats_object = 0
-    for i in bars_data['features']:
-        seats_count = i['properties']['Attributes']['SeatsCount']
+    for bar in bars_data['features']:
+        seats_count = bar['properties']['Attributes']['SeatsCount']
         if max_seats < seats_count:
             max_seats = seats_count
-            max_seats_object = i
+            max_seats_object = bar
     print(max_seats_object['properties']['Attributes']['Name'], max_seats_object['properties']['Attributes']['SeatsCount'])
 
 
 def get_smallest_bar(bars_data):
     min_seats = 1
     min_seats_object = 0
-    for i in bars_data['features']:
-        seats_count = i['properties']['Attributes']['SeatsCount']
+    for bar in bars_data['features']:
+        seats_count = bar['properties']['Attributes']['SeatsCount']
         if min_seats > seats_count:
             min_seats = seats_count
-            min_seats_object = i
+            min_seats_object = bar
     print(min_seats_object['properties']['Attributes']['Name'], min_seats_object['properties']['Attributes']['SeatsCount'])
 
 
@@ -51,13 +51,13 @@ def get_distance_in_km(lon1, lat1, lon2, lat2):
 def get_closest_bar(loaded_data, user_lon, user_lat):
     min_distance = 7000
     min_distance_object = None
-    for i in loaded_data['features']:
-        bar_lon, bar_lat = i['geometry']['coordinates']
+    for bar in loaded_data['features']:
+        bar_lon, bar_lat = bar['geometry']['coordinates']
         bar_distance = get_distance_in_km(user_lon, user_lat, bar_lon, bar_lat)
         # print(bar_distance)
         if min_distance > bar_distance:
             min_distance = bar_distance
-            min_distance_object = i
+            min_distance_object = bar
     return min_distance_object['properties']['Attributes']['Name']
 
 

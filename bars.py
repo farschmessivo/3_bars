@@ -10,7 +10,7 @@ def load_data(filepath):
 
 
 def get_biggest_bar(bars_data):
-    max_seats = 10
+    max_seats = 1
     max_seats_object = 0
     for i in bars_data['features']:
         seats_count = i['properties']['Attributes']['SeatsCount']
@@ -21,7 +21,7 @@ def get_biggest_bar(bars_data):
 
 
 def get_smallest_bar(bars_data):
-    min_seats = 10
+    min_seats = 1
     min_seats_object = 0
     for i in bars_data['features']:
         seats_count = i['properties']['Attributes']['SeatsCount']
@@ -31,7 +31,7 @@ def get_smallest_bar(bars_data):
     print(min_seats_object['properties']['Attributes']['Name'], min_seats_object['properties']['Attributes']['SeatsCount'])
 
 
-def haversine(lon1, lat1, lon2, lat2):
+def get_distance_in_km(lon1, lat1, lon2, lat2):
     """
     Calculate the great circle distance between two points
     on the earth (specified in decimal degrees)
@@ -44,8 +44,8 @@ def haversine(lon1, lat1, lon2, lat2):
     a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
     c = 2 * asin(sqrt(a))
     # Radius of earth in kilometers is 6371
-    km = 6371 * c
-    return km
+    distance_in_km = 6371 * c
+    return distance_in_km
 
 
 def get_closest_bar(loaded_data, user_lon, user_lat):
@@ -53,7 +53,7 @@ def get_closest_bar(loaded_data, user_lon, user_lat):
     min_distance_object = None
     for i in loaded_data['features']:
         bar_lon, bar_lat = i['geometry']['coordinates']
-        bar_distance = haversine(user_lon, user_lat, bar_lon, bar_lat)
+        bar_distance = get_distance_in_km(user_lon, user_lat, bar_lon, bar_lat)
         # print(bar_distance)
         if min_distance > bar_distance:
             min_distance = bar_distance

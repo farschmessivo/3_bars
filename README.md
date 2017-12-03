@@ -12,8 +12,12 @@
 
 ```bash
 
-$ python bars.py # possibly requires call of python3 executive instead of just python
-# FIXME вывести пример ответа скрипта
+$ python bars.py  <path to file>
+The biggest bar is: Спорт бар «Красная машина»
+The smallest bar is: БАР. СОКИ
+
+Please provide your lat long: 51 0
+The closest bar is: Бар «Ракета»
 
 ```
 

@@ -13,6 +13,7 @@
 ```bash
 
 $ python bars.py  <path to file>
+
 The biggest bar is: Спорт бар «Красная машина»
 The smallest bar is: БАР. СОКИ
 

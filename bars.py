@@ -10,14 +10,22 @@ def load_data(filepath):
 
 
 def get_biggest_bar(bars):
-    bar = max(bars,
-              key=lambda bar: bar['properties']['Attributes']['SeatsCount'])
+    bar = max(
+        bars,
+        key=lambda bar: bar
+        ['properties']
+        ['Attributes']
+        ['SeatsCount'])
     return bar
 
 
 def get_smallest_bar(bars):
-    bar = min(bars,
-              key=lambda bar: bar['properties']['Attributes']['SeatsCount'])
+    bar = min(
+        bars,
+        key=lambda bar: bar
+        ['properties']
+        ['Attributes']
+        ['SeatsCount'])
     return bar
 
 
@@ -27,8 +35,13 @@ def get_distance_in_km(lon1, lat1, lon2, lat2):
     on the earth (specified in decimal degrees)
     from https://stackoverflow.com/a/4913653
     """
-    lon1, lat1, lon2, lat2 = map(radians,
-                                 [lon1, lat1, lon2, lat2])
+    lon1, lat1, lon2, lat2 = map(
+        radians, [
+            lon1,
+            lat1,
+            lon2,
+            lat2
+        ])
 
     dlon = lon2 - lon1
     dlat = lat2 - lat1
@@ -45,7 +58,10 @@ def get_bar_name(bar):
 
 def get_closest_bar(bars, user_lon, user_lat):
     bar = min(bars, key=lambda bar: get_distance_in_km(
-        user_lon, user_lat, *bar['geometry']['coordinates']))
+        user_lon,
+        user_lat,
+        *bar['geometry']['coordinates']
+    ))
     return bar
 
 
@@ -61,6 +77,5 @@ if __name__ == '__main__':
           get_bar_name(get_smallest_bar(bars)))
     user_lon, user_lat = input('\nPlease provide your lat long: ').split(' ')
     print('The closest bar is:',
-          get_bar_name(get_closest_bar(bars,
-                                       float(user_lon), float(user_lat)))
-          )
+          get_bar_name(get_closest_bar(
+              bars, float(user_lon), float(user_lat))))
